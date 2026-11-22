@@ -31,7 +31,19 @@ def create_app(test_config=None):
         app.config.update(test_config)
 
     # Enable CORS
-    CORS(app, supports_credentials=True, origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000"])
+    allowed_origins = os.environ.get('ALLOWED_ORIGINS')
+    if allowed_origins:
+        origins = [o.strip() for o in allowed_origins.split(',')]
+    else:
+        origins = [
+            "http://localhost:5173",
+            "http://127.0.0.1:5173",
+            "http://localhost:3000",
+            r"https://.*\.vercel\.app",
+            r"https://.*\.onrender\.com"
+        ]
+
+    CORS(app, supports_credentials=True, origins=origins)
 
     # Initialize extensions
     db.init_app(app)
