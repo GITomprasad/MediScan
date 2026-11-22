@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.sqlite3
+.pytest_cache/
+*.log
+
+# Node & Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Uploads & Temp files
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/mediscan.db
+backend/test_mediscan.db
+
+# OS
+.DS_Store
+Thumbs.db
